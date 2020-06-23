@@ -3,6 +3,10 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager,\
     PermissionsMixin
 from phone_field import PhoneField
 
+# the recommended way of retrieving different settings from django
+# settings file
+from django.conf import settings
+
 # for extending django user model we need AbstractBaseUser,
 # BaseUserManager -> it will modify how we manage extended User
 # and PermissionsMixin
@@ -54,3 +58,19 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     # now tell the username field to be used
     USERNAME_FIELD = 'email'
+
+
+class Tag(models.Model):
+    """Tag to be used for blog"""
+    name = models.CharField(max_length=255)
+    user = models.ForeignKey(
+        # model we wannta base foreign key off
+        settings.AUTH_USER_MODEL,
+        # we specify what happens when we delete user
+        # we would delete the tags as the user itself gets deleted
+        on_delete=models.CASCADE
+    )
+
+    def __str__(self):
+        """return toString or str(obj)"""
+        return self.name

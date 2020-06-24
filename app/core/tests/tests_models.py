@@ -56,3 +56,12 @@ class ModelTests(TestCase):
         )
 
         self.assertEqual(str(tag), tag.name)
+
+    def test_post_str(self):
+        """Test the Post string representation"""
+        post = models.Post.objects.create(
+            author=sample_user(),
+            title=''
+        )
+
+        self.assertEqual(str(post), post.title)

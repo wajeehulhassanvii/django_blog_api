@@ -8,6 +8,7 @@ from blog import views
 
 router = DefaultRouter()
 router.register('tags', views.TagViewSet)
+router.register('posts', views.PostViewSet)
 
 app_name = 'blog'
 

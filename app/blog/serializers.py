@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from core.models import Tag
+from core.models import Tag, Post
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -9,4 +9,13 @@ class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = ('id', 'name')
+        read_only_fields = ('id',)
+
+
+class PostSerializer(serializers.Serializer):
+    """Serializer for Post"""
+    class Meta:
+        model = Post
+        fields = ('id', 'title')
+        ordering = ('-publish')
         read_only_fields = ('id',)

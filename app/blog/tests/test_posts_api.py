@@ -7,7 +7,7 @@ from rest_framework.test import APIClient
 
 from core.models import Post
 from blog.serializers import PostSerializer
-
+import json
 
 POSTS_URL = reverse('blog:post-list')
 
@@ -70,4 +70,5 @@ class PrivatePostsApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(len(res.data), 1)
+        print(json.dumps(res.data, indent=0))
         self.assertEqual(res.data[0]['title'], post.title)

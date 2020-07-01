@@ -25,7 +25,7 @@ SECRET_KEY = '6dc+i-vij743kth@-m(2j*d)a$(n8(tjk(8l^f5t&qvm=g(=45'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["wajeeh-machine"]
 
 
 # Application definition

@@ -30,7 +30,8 @@ class TagViewSet(viewsets.GenericViewSet,
 
 
 class PostViewSet(viewsets.GenericViewSet,
-                  mixins.ListModelMixin):
+                  mixins.ListModelMixin,
+                  mixins.CreateModelMixin):
     """Manage Post in the database"""
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
@@ -39,4 +40,12 @@ class PostViewSet(viewsets.GenericViewSet,
 
     def get_queryset(self):
         """Return objects for the current authenticated user only"""
-        return self.queryset.filter(author=self.request.user).order_by('-title')
+        return self.queryset.\
+            filter(author=self.request.user).order_by('-title')
+
+    def perform_create(self):
+        """perform create for Post object
+        Keyword arguments:
+        Return: return_description
+        """
+        serializers.save(user=self.request.user)

@@ -12,7 +12,7 @@ class TagSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
 
-class PostSerializer(serializers.Serializer):
+class PostSerializer(serializers.ModelSerializer):
     """Serializer for Post"""
     class Meta:
         model = Post

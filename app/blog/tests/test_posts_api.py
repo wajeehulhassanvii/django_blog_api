@@ -6,6 +6,7 @@ from rest_framework import status
 from rest_framework.test import APIClient
 
 from core.models import Post
+
 from blog.serializers import PostSerializer
 import json
 
@@ -23,6 +24,7 @@ class PublicPostApiTests(TestCase):
         res = self.client.get(POSTS_URL)
 
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+
 
 class PrivatePostsApiTests(TestCase):
     """Test private Post APIs"""
@@ -57,15 +59,11 @@ class PrivatePostsApiTests(TestCase):
             'experiment'
         )
         Post.objects.create(title='Muh foodboy',
-                            slug='one-more-post',
-                            body='Muh foodboy.',
                             author=user2)
 
         post = Post.objects.create(title='here comes dh',
-                                    slug='one-more-post',
-                                    body='here comes dh',
-                                    author=self.user)
-
+                                   author=self.user)
+        print(POSTS_URL)
         res = self.client.get(POSTS_URL)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)

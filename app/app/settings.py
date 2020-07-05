@@ -25,7 +25,7 @@ SECRET_KEY = '6dc+i-vij743kth@-m(2j*d)a$(n8(tjk(8l^f5t&qvm=g(=45'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["wajeeh-machine"]
+ALLOWED_HOSTS = ["wajeeh-machine", '127.0.0.1', "localhost"]
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # 3rd party libraries
     "rest_framework",
     "rest_framework.authtoken",
+    # "rest_framework_simplejwt.authentication.JWTAuthentication",
 
     # our apps
     "core",
@@ -132,6 +133,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     )
+
+# }
+
 
 # we has assigned as our custom user model
 AUTH_USER_MODEL = 'core.User'

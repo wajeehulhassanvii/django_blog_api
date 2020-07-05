@@ -29,9 +29,9 @@ class TagViewSet(viewsets.GenericViewSet,
         serializer.save(user=self.request.user)
 
 
-class PostViewSet(viewsets.GenericViewSet,
-                  mixins.ListModelMixin,
-                  mixins.CreateModelMixin):
+class MyPostViewSet(viewsets.GenericViewSet,
+                    mixins.ListModelMixin,
+                    mixins.CreateModelMixin):
     """Manage Post in the database"""
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
@@ -49,3 +49,14 @@ class PostViewSet(viewsets.GenericViewSet,
         Return: return_description
         """
         serializers.save(user=self.request.user)
+
+
+class PostViewSet(viewsets.GenericViewSet,
+                  mixins.ListModelMixin):
+    """Manage Post in the database for public"""
+    queryset = Post.objects.all()
+    serializer_class = serializers.PostSerializer
+
+    def get_queryset(self):
+        """Return objects for the public users"""
+        return self.queryset.order_by('-title')

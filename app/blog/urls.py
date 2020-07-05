@@ -1,5 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+# from rest_framework_simplejwt import views as jwt_views
 
 from blog import views
 
@@ -8,7 +9,8 @@ from blog import views
 
 router = DefaultRouter()
 router.register('tags', views.TagViewSet)
-router.register('posts', views.PostViewSet)
+router.register('my_posts', views.MyPostViewSet, 'my_post')
+router.register('post', views.PostViewSet, 'post')
 
 app_name = 'blog'
 

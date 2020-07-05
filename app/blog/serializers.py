@@ -14,8 +14,12 @@ class TagSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     """Serializer for Post"""
+    # changed = serializers.DateTimeField(read_only=True)
+    # updated = serializers.DateTimeField(read_only=True)
+    # publish = serializers.DateTimeField(read_only=True)
+
     class Meta:
         model = Post
-        fields = ('id', 'title')
+        fields = ('id', 'title', 'body')
         ordering = ('-publish')
         read_only_fields = ('id',)

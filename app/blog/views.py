@@ -43,12 +43,12 @@ class MyPostViewSet(viewsets.GenericViewSet,
         return self.queryset.\
             filter(author=self.request.user).order_by('-title')
 
-    def perform_create(self):
+    def perform_create(self, serializer):
         """perform create for Post object
         Keyword arguments:
         Return: return_description
         """
-        serializers.save(user=self.request.user)
+        serializer.save(author=self.request.user)
 
 
 class PostViewSet(viewsets.GenericViewSet,
